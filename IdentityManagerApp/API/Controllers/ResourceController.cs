@@ -6,31 +6,31 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserController : ControllerBase
+public class ResourceController : ControllerBase
 {
     //private static readonly string[] Summaries = new[]
     //{
     //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     //};
 
-    private readonly IUserManager userManager;
+    private readonly IResourceManager resourceManager;
 
-    private readonly ILogger<UserController> _logger;
+    private readonly ILogger<ResourceController> _logger;
 
-    public UserController(ILogger<UserController> logger, IUserManager userManager)
+    public ResourceController(ILogger<ResourceController> logger, IResourceManager resourceManager)
     {
         _logger = logger;
-        this.userManager = userManager;
+        this.resourceManager = resourceManager;
     }
 
     [HttpGet(Name = "get-users")]
     public async Task<ActionResult> Get()
     {
-        List<User> users = new List<User>();
+        List<Resource> result = new List<Resource>();
         try
         {
-            users = await userManager.GetUsers();
-            if (users == null || users.Count() < 1)
+            result = await resourceManager.GetResources();
+            if (result == null || result.Count() < 1)
                 return NotFound("No result found!");
 
         }catch(Exception e)
@@ -38,7 +38,7 @@ public class UserController : ControllerBase
             _logger.LogError(e.Message);
             throw new Exception("Data access failed. Try again.");
         }
-        return Ok(users);
+        return Ok(result);
     }
 }
 

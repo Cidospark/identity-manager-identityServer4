@@ -1,11 +1,14 @@
 ﻿using System;
+using DataAccess.Entity;
+using Microsoft.EntityFrameworkCore;
+
 namespace DataAccess.Data
 {
-    public class ApplicationDBContext
+    public class ApplicationDBContext : DbContext
     {
-        public ApplicationDBContext()
-        {
-        }
+        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options): base(options){ }
+
+        public DbSet<User> Users { get; set; }
     }
 }
 

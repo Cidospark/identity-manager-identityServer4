@@ -8,7 +8,7 @@ namespace DataAccess.Data
     {
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options): base(options){ }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Resource> Resources { get; set; }
     }
 }
 

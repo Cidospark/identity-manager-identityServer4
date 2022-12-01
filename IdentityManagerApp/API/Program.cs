@@ -9,7 +9,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConn"),
         x => x.MigrationsAssembly("DataAccess")));
 
-builder.Services.AddScoped<IUserManager, UserManager>();
+builder.Services.AddScoped<IResourceManager, ResourceManager>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

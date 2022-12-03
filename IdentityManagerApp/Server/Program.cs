@@ -16,7 +16,8 @@ builder.Services.AddDbContext<AspNetIdentityDbContext>(options =>
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AspNetIdentityDbContext>();
 
 
-builder.Services.AddIdentityServer().AddAspNetIdentity<IdentityUser>().AddConfigurationStore(options =>
+builder.Services.AddIdentityServer().AddAspNetIdentity<IdentityUser>()
+ .AddConfigurationStore(options =>
 {
     options.ConfigureDbContext = b => b.UseSqlServer(defaultConn, opt => opt.MigrationsAssembly(assembly));
 }).AddOperationalStore(options =>
